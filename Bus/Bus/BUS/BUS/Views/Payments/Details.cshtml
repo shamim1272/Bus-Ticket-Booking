@@ -1,0 +1,50 @@
+﻿@model BUS.Models.Payment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Payment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TICKET_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TICKET_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PAYMENT_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PAYMENT_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PAYMENT_METHOD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PAYMENT_METHOD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AMOUNT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AMOUNT)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PAYMENT_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

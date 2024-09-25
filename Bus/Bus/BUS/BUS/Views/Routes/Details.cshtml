@@ -1,0 +1,44 @@
+﻿@model BUS.Models.Route
+
+@{
+    ViewBag.Title = "Details";
+
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Route</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.START_LOCATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.START_LOCATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.END_LOCATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.END_LOCATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DISTANCE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISTANCE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ROUTE_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

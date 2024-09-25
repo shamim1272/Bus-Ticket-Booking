@@ -1,0 +1,127 @@
+﻿@model BUS.Models.Schedule
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Create Schedule</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal shadow p-4 bg-white rounded" style="max-width: 600px; margin: auto;">
+            <h4>Schedule Information</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group row">
+                @Html.Label("Bus Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("BUS_ID", ViewBag.BusList as SelectList, "Select Bus", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BUS_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.HiddenFor(model => model.ROUTE_ID, new { id = "routeId" })
+                @Html.Label("Start Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    <input type="text" id="startLocation" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.Label("End Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    <input type="text" id="endLocation" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.DEPARTURE_TIME, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.DEPARTURE_TIME, new { htmlAttributes = new { @class = "form-control", id = "departureTime" } })
+                    @Html.ValidationMessageFor(model => model.DEPARTURE_TIME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ARRIVAL_TIME, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ARRIVAL_TIME, new { htmlAttributes = new { @class = "form-control", id = "arrivalTime" } })
+                    @Html.ValidationMessageFor(model => model.ARRIVAL_TIME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row text-center">
+                <div class="col-md-12">
+                    <input type="submit" value="Create" class="btn btn-success btn-lg" style="width: 100%;" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<style>
+    .form-group{
+        padding:20px;
+    }
+</style>
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.13.18/jquery.timepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#busDropdown').change(function () {
+                var busId = $(this).val();
+                if (busId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBusDetails", "Schedules")',
+                        type: 'GET',
+                        data: { busId: busId },
+                        success: function (data) {
+                            if (data.success) {
+                                $('#startLocation').val(data.startLocation);
+                                $('#endLocation').val(data.endLocation);
+                                $('#routeId').val(data.routeId);
+                            } else {
+                                $('#startLocation').val('');
+                                $('#endLocation').val('');
+                                $('#routeId').val('');
+                            }
+                        }
+                    });
+                } else {
+                    $('#startLocation').val('');
+                    $('#endLocation').val('');
+                    $('#routeId').val('');
+                }
+            });
+
+            $('#departureTime').timepicker({
+                format: 'dd-M-yyyy hh:mm:ss aa',
+                interval: 15,
+                minTime: '00:00',
+                maxTime: '23:45',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+            });
+
+            $('#arrivalTime').timepicker({
+                format: 'dd-M-yyyy hh:mm:ss aa',
+                interval: 15,
+                minTime: '00:00',
+                maxTime: '23:45',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+            });
+        });
+    </script>
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.13.18/jquery.timepicker.min.css">

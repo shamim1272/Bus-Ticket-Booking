@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BUS.Models.Schedule>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BUS_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROUTE_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DEPARTURE_TIME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ARRIVAL_TIME)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BUS_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROUTE_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DEPARTURE_TIME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ARRIVAL_TIME)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SCHEDULE_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SCHEDULE_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SCHEDULE_ID })
+        </td>
+    </tr>
+}
+
+</table>
