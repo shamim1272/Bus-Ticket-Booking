@@ -1,0 +1,43 @@
+﻿@model BUS.Models.Bus
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bus</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BUS_NUMBER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BUS_NUMBER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CAPACITY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CAPACITY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROUTE_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROUTE_ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BUS_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BusessModelStoreContainer" CdmEntityContainer="BusessEntities">
+    <EntitySetMapping Name="Buses">
+      <EntityTypeMapping TypeName="BusessModel.Bus">
+        <MappingFragment StoreEntitySet="Bus">
+          <ScalarProperty Name="BUS_ID" ColumnName="BUS_ID" />
+          <ScalarProperty Name="BUS_NUMBER" ColumnName="BUS_NUMBER" />
+          <ScalarProperty Name="CAPACITY" ColumnName="CAPACITY" />
+          <ScalarProperty Name="ROUTE_ID" ColumnName="ROUTE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chooses">
+      <EntityTypeMapping TypeName="BusessModel.Choose">
+        <MappingFragment StoreEntitySet="Choose">
+          <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+          <ScalarProperty Name="BUS_ID" ColumnName="BUS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="BusessModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+          <ScalarProperty Name="C_NAME" ColumnName="C_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="MOBILE_NUMBER" ColumnName="MOBILE_NUMBER" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="BusessModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="PAYMENT_ID" ColumnName="PAYMENT_ID" />
+          <ScalarProperty Name="TICKET_ID" ColumnName="TICKET_ID" />
+          <ScalarProperty Name="PAYMENT_DATE" ColumnName="PAYMENT_DATE" />
+          <ScalarProperty Name="PAYMENT_METHOD" ColumnName="PAYMENT_METHOD" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Routes">
+      <EntityTypeMapping TypeName="BusessModel.Route">
+        <MappingFragment StoreEntitySet="Route">
+          <ScalarProperty Name="ROUTE_ID" ColumnName="ROUTE_ID" />
+          <ScalarProperty Name="START_LOCATION" ColumnName="START_LOCATION" />
+          <ScalarProperty Name="END_LOCATION" ColumnName="END_LOCATION" />
+          <ScalarProperty Name="DISTANCE" ColumnName="DISTANCE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schedules">
+      <EntityTypeMapping TypeName="BusessModel.Schedule">
+        <MappingFragment StoreEntitySet="Schedule">
+          <ScalarProperty Name="SCHEDULE_ID" ColumnName="SCHEDULE_ID" />
+          <ScalarProperty Name="BUS_ID" ColumnName="BUS_ID" />
+          <ScalarProperty Name="ROUTE_ID" ColumnName="ROUTE_ID" />
+          <ScalarProperty Name="DEPARTURE_TIME" ColumnName="DEPARTURE_TIME" />
+          <ScalarProperty Name="ARRIVAL_TIME" ColumnName="ARRIVAL_TIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="BusessModel.Ticket">
+        <MappingFragment StoreEntitySet="Ticket">
+          <ScalarProperty Name="TICKET_ID" ColumnName="TICKET_ID" />
+          <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+          <ScalarProperty Name="BUS_ID" ColumnName="BUS_ID" />
+          <ScalarProperty Name="SEAT_NUMBER" ColumnName="SEAT_NUMBER" />
+          <ScalarProperty Name="JOURNEY_DATE" ColumnName="JOURNEY_DATE" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

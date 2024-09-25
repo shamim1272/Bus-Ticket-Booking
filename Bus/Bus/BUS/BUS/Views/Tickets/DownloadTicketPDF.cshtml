@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Download Ticket PDF";
+}
+
+<h2>Download Your Ticket</h2>
+
+<p>Click the button below to download your ticket as a PDF.</p>
+
+<a href="@Url.Action("DownloadTicketPDF", "Tickets", new { id = ViewBag.TicketId })" class="btn btn-primary">Download PDF</a>

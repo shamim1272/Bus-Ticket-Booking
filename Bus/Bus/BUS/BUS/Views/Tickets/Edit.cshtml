@@ -1,0 +1,96 @@
+﻿@model BUS.Models.Ticket
+
+@{
+    ViewBag.Title = "Edit Ticket";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Edit Ticket</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal shadow p-4 bg-white rounded" style="max-width: 600px; margin: auto;">
+            <h4>Ticket Information</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.TICKET_ID)
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.C_ID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.C_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.C_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.BUS_ID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.BUS_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BUS_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.SEAT_NUMBER, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.SEAT_NUMBER, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SEAT_NUMBER, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.JOURNEY_DATE, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.JOURNEY_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JOURNEY_DATE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.PRICE, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PRICE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row text-center">
+                <div class="col-md-12">
+                    <input type="submit" value="Save" class="btn btn-success btn-lg" style="width: 100%;" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background for contrast */
+    }
+
+    h2 {
+        color: #333; /* Dark text color */
+    }
+
+    .form-horizontal {
+        margin-top: 20px;
+        border-radius: 0.5rem; /* Rounded corners */
+    }
+
+    .form-group {
+        margin-bottom: 15px; /* Consistent space between form groups */
+    }
+
+    .btn-success {
+        margin-top: 10px; /* Adds space above the button */
+    }
+
+    .text-center {
+        margin-top: 20px; /* Space above the back link */
+    }
+</style>

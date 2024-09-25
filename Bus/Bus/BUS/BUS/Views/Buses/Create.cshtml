@@ -1,0 +1,83 @@
+﻿@model BUS.Models.Bus
+
+@{
+    ViewBag.Title = "Create Bus";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Create New Bus</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal shadow p-3 bg-white rounded" style="max-width: 500px; margin: auto;">
+            <h4>Bus Information</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.BUS_NUMBER, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.BUS_NUMBER, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                    @Html.ValidationMessageFor(model => model.BUS_NUMBER, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.CAPACITY, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.CAPACITY, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                    @Html.ValidationMessageFor(model => model.CAPACITY, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ROUTE_ID, "Route", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("ROUTE_ID", (SelectList)ViewBag.RouteList, "Select Route", new { @class = "form-control form-control-sm" })
+                    @Html.ValidationMessageFor(model => model.ROUTE_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row" style="text-align:center;">
+                <div class="col-md-12">
+                    <input type="submit" value="Create" class="btn btn-success btn-lg" style="width: 100%;" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background for contrast */
+    }
+
+    .container {
+        margin-top: 30px;
+    }
+
+    h2 {
+        color: #333; /* Dark text color */
+        margin-bottom: 20px;
+    }
+
+    .form-horizontal {
+        margin-top: 20px;
+        border-radius: 0.5rem; /* Rounded corners */
+    }
+
+    .form-group {
+        margin-bottom: 10px; /* Reduced space between form groups */
+    }
+
+    .btn-success {
+        margin-top: 10px; /* Adds space above the button */
+    }
+
+    .text-center {
+        margin-top: 20px; /* Space above the header */
+    }
+</style>

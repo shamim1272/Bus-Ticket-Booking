@@ -1,0 +1,66 @@
+﻿@model BUS.Models.Ticket
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/Customer.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure want to delete this ticket?</h3>
+<div>
+    <h4>Ticket Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.C_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BUS_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BUS_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SEAT_NUMBER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SEAT_NUMBER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JOURNEY_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JOURNEY_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRICE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRICE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

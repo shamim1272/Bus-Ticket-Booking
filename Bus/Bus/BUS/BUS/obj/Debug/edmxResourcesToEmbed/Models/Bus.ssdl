@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BusessModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bus">
+    <Key>
+      <PropertyRef Name="BUS_ID" />
+    </Key>
+    <Property Name="BUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BUS_NUMBER" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CAPACITY" Type="int" Nullable="false" />
+    <Property Name="ROUTE_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Choose">
+    <Key>
+      <PropertyRef Name="C_ID" />
+      <PropertyRef Name="BUS_ID" />
+    </Key>
+    <Property Name="C_ID" Type="int" Nullable="false" />
+    <Property Name="BUS_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="C_ID" />
+    </Key>
+    <Property Name="C_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MOBILE_NUMBER" Type="varchar" MaxLength="15" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PAYMENT_ID" />
+    </Key>
+    <Property Name="PAYMENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TICKET_ID" Type="int" />
+    <Property Name="PAYMENT_DATE" Type="datetime" Nullable="false" />
+    <Property Name="PAYMENT_METHOD" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AMOUNT" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="ROUTE_ID" />
+    </Key>
+    <Property Name="ROUTE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="START_LOCATION" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="END_LOCATION" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DISTANCE" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="SCHEDULE_ID" />
+    </Key>
+    <Property Name="SCHEDULE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BUS_ID" Type="int" />
+    <Property Name="ROUTE_ID" Type="int" />
+    <Property Name="DEPARTURE_TIME" Type="datetime" Nullable="false" />
+    <Property Name="ARRIVAL_TIME" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="TICKET_ID" />
+    </Key>
+    <Property Name="TICKET_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_ID" Type="int" />
+    <Property Name="BUS_ID" Type="int" />
+    <Property Name="SEAT_NUMBER" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="JOURNEY_DATE" Type="date" Nullable="false" />
+    <Property Name="PRICE" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="BusessModelStoreContainer">
+    <EntitySet Name="Bus" EntityType="Self.Bus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Choose" EntityType="Self.Choose" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

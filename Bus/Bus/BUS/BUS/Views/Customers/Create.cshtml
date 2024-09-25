@@ -1,0 +1,175 @@
+﻿@model BUS.Models.Customer
+
+@{
+    ViewBag.Title = "Create";
+}
+<style type="text/css">
+    body {
+        background: linear-gradient(to right, #f9f9f9, #e2e2e2); /* Gradient background */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .panel {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 20px auto; /* Center the panel horizontally */
+        width: 50%; /* Fixed width for the panel */
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    .panel-heading {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .panel-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: black; /* Set title color to black */
+        margin: 0;
+    }
+
+    .form-horizontal {
+        margin: 0 auto; /* Center the form horizontally */
+        max-width: 600px; /* Adjust the max-width as needed */
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center align items in the group */
+    }
+
+    .control-label {
+        margin-bottom: 10px; /* Space between the label and the input */
+        font-weight: bold;
+        color: #495057; /* Dark gray */
+        text-align: center; /* Center label text */
+    }
+
+    .form-control {
+        max-width: 100%; /* Limit the width of the input */
+        width: 100%; /* Make input fields responsive */
+        border: 2px solid #007bff;
+        border-radius: 5px;
+        transition: border-color 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #6f42c1; /* Purple focus color */
+            box-shadow: 0 0 5px rgba(111, 66, 193, 0.5); /* Purple glow */
+        }
+
+    .btn-default {
+        background-color: #28a745; /* Green button */
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.2s;
+        width: 100%; /* Full width button */
+    }
+
+        .btn-default:hover {
+            background-color: #218838; /* Darker green on hover */
+            transform: translateY(-2px);
+        }
+
+    .validation-summary {
+        margin-bottom: 20px;
+        color: #dc3545; /* Red for error messages */
+        font-weight: bold;
+        background-color: #f8d7da; /* Light red background for validation */
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center; /* Center error messages */
+    }
+
+    input, select, textarea {
+        max-width: 100%;
+    }
+
+    .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+        .back-link a {
+            color: #007bff; /* Blue link */
+            text-decoration: none;
+            transition: text-decoration 0.2s;
+        }
+
+            .back-link a:hover {
+                text-decoration: underline;
+            }
+</style>
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2 class="panel-title">Registration</h2>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "validation-summary" })
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.C_NAME, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Name" } })
+                    @Html.ValidationMessageFor(model => model.C_NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Email" } })
+                    @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.MOBILE_NUMBER, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Number" } })
+                    @Html.ValidationMessageFor(model => model.MOBILE_NUMBER, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.ADDRESS, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Address" } })
+                    @Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Password" } })
+                    @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

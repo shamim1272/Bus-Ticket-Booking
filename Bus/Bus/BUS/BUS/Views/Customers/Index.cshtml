@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BUS.Models.Customer>
+
+@{
+    ViewBag.Title = "Customer Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Customer Management</h2>
+
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.First().C_NAME)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().EMAIL)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().MOBILE_NUMBER)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().ADDRESS)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().PASSWORD)</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.C_NAME)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EMAIL)</td>
+                        <td>@Html.DisplayFor(modelItem => item.MOBILE_NUMBER)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ADDRESS)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PASSWORD)</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.C_ID }, new { @class = "btn btn-warning btn-sm" }) |
+                           
+                            @Html.ActionLink("Delete", "Delete", new { id = item.C_ID }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+
+    h2 {
+        color: #333;
+    }
+
+    .table {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .thead-dark {
+        background-color: #343a40;
+        color: white;
+    }
+
+    .btn-primary {
+        margin-bottom: 15px;
+    }
+
+    .btn-sm {
+        padding: 5px 10px; /* Smaller button padding */
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>

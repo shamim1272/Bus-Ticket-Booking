@@ -1,0 +1,61 @@
+﻿@model BUS.Models.Customer
+
+@{
+    ViewBag.Title = "Customer Details";
+    Layout = "~/Views/Shared/Customer.cshtml";
+}
+
+<h2 class="text-center">Customer Details</h2>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Customer Information</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.C_NAME)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.C_NAME)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.EMAIL)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.EMAIL)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.MOBILE_NUMBER)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.MOBILE_NUMBER)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ADDRESS)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.ADDRESS)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PASSWORD)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.PASSWORD)</dd>
+            </dl>
+        </div>
+        <div class="card-footer text-right">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.C_ID }, new { @class = "btn btn-warning" })
+          
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    h2 {
+        margin: 20px 0;
+        color: #343a40;
+    }
+
+    .card {
+        margin-top: 20px;
+    }
+
+    .card-header {
+        font-size: 1.5rem;
+    }
+
+    .btn-warning {
+        margin-right: 10px;
+    }
+</style>

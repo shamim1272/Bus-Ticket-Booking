@@ -1,0 +1,78 @@
+﻿@model BUS.Models.Bus
+
+@{
+    ViewBag.Title = "Delete Bus";
+    Layout = "~/Views/Shared/Admin.cshtml"; // Assuming you have a layout for admin views
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Delete Bus</h2>
+
+    <h3 class="text-danger">Are you sure you want to delete this?</h3>
+    <div class="bg-light p-4 rounded shadow-sm">
+        <h4>Bus Information</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.BUS_NUMBER)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.BUS_NUMBER)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.CAPACITY)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.CAPACITY)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ROUTE_ID)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ROUTE_ID)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions text-center mt-4">
+                <input type="submit" value="Delete" class="btn btn-danger btn-lg" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-link" })
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background for contrast */
+    }
+
+    h2 {
+        color: #333; /* Dark text color */
+    }
+
+    h3.text-danger {
+        margin-top: 20px; /* Space above the confirmation message */
+    }
+
+    .bg-light {
+        background-color: #f1f1f1; /* Light background for the bus information section */
+    }
+
+    .form-actions {
+        margin-top: 20px; /* Space above the action buttons */
+    }
+
+    .btn-danger {
+        margin-right: 10px; /* Space between buttons */
+    }
+
+    .text-center {
+        margin-top: 20px; /* Space above the action link */
+    }
+</style>

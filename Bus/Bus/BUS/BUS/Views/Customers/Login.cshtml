@@ -1,0 +1,177 @@
+﻿@model BUS.Models.Customer
+
+@{
+    ViewBag.Title = "Customer Login";
+}
+
+<style type="text/css">
+    body {
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+    }
+
+    .centered-form {
+        margin-top: 10%;
+        display: flex;
+        justify-content: center;
+    }
+
+        .centered-form .panel {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: none;
+            padding: 30px;
+        }
+
+    .panel-heading {
+        background-color: white !important;
+    }
+
+    .panel-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #343a40;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-horizontal {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column; /* Change to column for vertical alignment */
+        align-items: center; /* Center children elements horizontally */
+        justify-content: center; /* Center children elements vertically */
+    }
+
+    .input-group {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .input-label {
+        margin-right: 10px;
+        width: 100px; /* Adjust width as necessary */
+        text-align: right;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+        width: 100%; /* Make input fields full width */
+        max-width: 300px; /* Set max width to ensure consistency */
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 2px solid #007bff;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+    }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="password"]:focus {
+            border-color: #6f42c1;
+            box-shadow: 0 0 5px rgba(111, 66, 193, 0.5);
+        }
+
+    .btn-login {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #28a745;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        display: block;
+        margin: 0 auto;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+        .btn-login:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+    .alert-danger {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8d7da;
+        border-color: #ebccd1;
+        color: #a94442;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .form-horizontal .checkbox {
+        text-align: center;
+        display: flex; /* Use flexbox for centering */
+        justify-content: center; /* Center the checkbox horizontally */
+        margin: 0 auto; /* Center the checkbox group */
+    }
+    .form-group input[type="text"], .form-group input[type="password"] {
+      
+        max-width: 100%;
+    }
+        .form-horizontal .checkbox label {
+            margin: 0 auto;
+        }
+</style>
+
+
+@using (Html.BeginForm("Login", "Customers", FormMethod.Post, new { @class = "form-horizontal centered-form", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Sign In</div>
+        </div>
+        <div class="panel-body">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p>@error.ErrorMessage</p>
+                    }
+                </div>
+            }
+
+            <div class="form-group">
+                <div class="input-group">
+
+                    @Html.TextBox("email", null, new { @class = "form-control", placeholder = "Enter Email" })
+                    @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+
+                    @Html.Password("password", null, new { @class = "form-control", placeholder = "Enter Password" })
+                    @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBox("RememberMe")
+                        Remember me
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-login">Login</button>
+            </div>
+        </div>
+    </div>
+}

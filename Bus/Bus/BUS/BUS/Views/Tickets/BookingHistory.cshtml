@@ -1,0 +1,92 @@
+﻿@model IEnumerable<BUS.Models.Ticket>
+@using BUS.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Customer.cshtml";
+}
+
+<h2 class="text-center">Booking History of @Session["name"]</h2>
+
+<p class="text-center">
+    @Html.ActionLink("Book New Ticket", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<div class="container">
+    <table class="table table-bordered table-striped table-hover text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.BUS_ID)</th>
+                <th>Start Location</th>
+                <th>End Location</th>
+                <th>@Html.DisplayNameFor(model => model.SEAT_NUMBER)</th>
+                <th>@Html.DisplayNameFor(model => model.JOURNEY_DATE)</th>
+                <th>Ticket @Html.DisplayNameFor(model => model.PRICE)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @{
+                        var id = item.BUS_ID;
+                        var db = new BusEasyEntities();
+                        var busname = db.Buses.SingleOrDefault(c => c.BUS_ID == id);
+                    }
+                    @if (busname != null)
+                    {
+                        <td>@busname.BUS_NUMBER</td>
+
+                        var rid = busname.ROUTE_ID;
+                        var location = db.Routes.SingleOrDefault(c => c.ROUTE_ID == rid);
+
+                        <td>@location.START_LOCATION</td>
+                        <td>@location.END_LOCATION</td>
+                    }
+                    <td>@Html.DisplayFor(modelItem => item.SEAT_NUMBER)</td>
+                    <td>@Html.DisplayFor(modelItem => item.JOURNEY_DATE)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PRICE)</td>
+
+                    <td>
+                        @{ Session["p"] = "1"; }
+                        @Html.ActionLink("Cancel Ticket", "Delete", new { id = item.TICKET_ID }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    
+    h2 {
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    .table {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .thead-dark {
+        background-color: #343a40;
+        color: white;
+    }
+
+    .btn-primary {
+        margin-bottom: 15px;
+    }
+
+    .btn-danger {
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-danger:hover {
+            background-color: #dc3545;
+        }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
