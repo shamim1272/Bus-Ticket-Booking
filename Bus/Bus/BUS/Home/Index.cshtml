@@ -1,0 +1,474 @@
+﻿@model BUS.Models.Ticket
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>bUS ticKET BOOKING SYSTEM </title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <style>
+
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            color: black;
+        }
+
+        .section-title h2 {
+            color: #083D77;
+        }
+
+        .card {
+            border: none;
+            transition: transform 0.3s ease-in-out;
+        }
+
+            .card:hover {
+                transform: translateY(-10px);
+            }
+
+        .card-body {
+            background-color: #FFFFFF;
+            color: #212529;
+            border: 1px solid #F2F4F8;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #0D6EFD;
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background-color: #083D77;
+            }
+
+        .moving-container {
+            margin-top: 10px;
+            margin-left: -300px;
+            width: 150%;
+            overflow: hidden;
+            position: relative;
+            /* white-space: nowrap;*/
+            background-color: gray;
+            padding: 5px 0 0 0;
+            border-radius: 10px;
+        }
+
+
+        .moving-div {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            font-size: 1.2;
+            animation: move 10s linear infinite;
+        }
+
+        @@keyframes move {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .text-center1 {
+            margin: 0 0 0 -5%;
+            width: 110%;
+            font-family: 'Segoe UI';
+            display: inline-block;
+            background: linear-gradient(10deg,rgba(255,255,255,0.1),rgba(255,255,255,0.1));
+            backdrop-filter: blur(4px);
+            padding: 50px 30px 30px 20px;
+        }
+        body {
+            background: white;
+            height: 600px;
+        }
+
+        .centered-form {
+            margin-top: 10%;
+        }
+
+            .centered-form .panel {
+                background: rgba(255, 255, 255, 0.8);
+                box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+            }
+
+        label.label-floatlabel {
+            font-weight: bold;
+            color: #46b8da;
+            font-size: 11px;
+        }
+
+        .center-block {
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .input-group .icon-addon .form-control {
+            border-radius: 0;
+        }
+
+        .icon-addon {
+            position: relative;
+            color: #555;
+            display: block;
+        }
+
+            .icon-addon:after,
+            .icon-addon:before {
+                display: table;
+                content: " ";
+            }
+
+            .icon-addon:after {
+                clear: both;
+            }
+
+            .icon-addon.addon-md .glyphicon,
+            .icon-addon .glyphicon,
+            .icon-addon.addon-md .fa,
+            .icon-addon .fa {
+                position: absolute;
+                z-index: 2;
+                left: 10px;
+                font-size: 14px;
+                width: 20px;
+                margin-left: -2.5px;
+                text-align: center;
+                padding: 10px 0;
+                top: 1px;
+            }
+
+            .icon-addon.addon-lg .form-control {
+                line-height: 1.33;
+                height: 46px;
+                font-size: 18px;
+                padding: 10px 16px 10px 40px;
+            }
+
+            .icon-addon.addon-sm .form-control {
+                height: 30px;
+                padding: 5px 10px 5px 28px;
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .icon-addon.addon-lg .fa,
+            .icon-addon.addon-lg .glyphicon {
+                font-size: 18px;
+                margin-left: 0;
+                left: 11px;
+                top: 4px;
+            }
+
+            .icon-addon.addon-md .form-control,
+            .icon-addon .form-control {
+                padding-left: 30px;
+                float: left;
+                font-weight: normal;
+            }
+
+            .icon-addon.addon-sm .fa,
+            .icon-addon.addon-sm .glyphicon {
+                margin-left: 0;
+                font-size: 12px;
+                left: 5px;
+                top: -1px;
+            }
+
+            .icon-addon .form-control:focus + .glyphicon,
+            .icon-addon:hover .glyphicon,
+            .icon-addon .form-control:focus + .fa,
+            .icon-addon:hover .fa {
+                color: #2580db;
+            }
+
+        .custom-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+            .custom-list li {
+                position: relative;
+                padding-left: 20px; /* Adjust as needed */
+                margin-bottom: 10px; /* Adjust as needed */
+            }
+
+                .custom-list li span {
+                    color: red;
+                }
+
+                .custom-list li:before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 6px; /* Adjust vertical alignment */
+                    width: 10px; /* Adjust arrow width */
+                    height: 10px; /* Adjust arrow height */
+                    border-top: 2px solid #333; /* Arrow color */
+                    border-right: 2px solid #333; /* Arrow color */
+                    transform: rotate(45deg);
+                }
+
+        .ticket-purchase-steps {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            margin: 20px;
+        }
+
+        .step-div {
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .img-div {
+            margin-bottom: 10px;
+        }
+
+        .heading-div {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .description-div {
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-5">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                        <div class="form-group">
+
+                            <div class="col-md-8">
+                                @Html.DropDownList("BUS_ID", ViewBag.BusList as SelectList, "Select Bus", new { @class = "form-control", id = "busDropdown" })
+                                @Html.ValidationMessageFor(model => model.BUS_ID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-8">
+                                <input type="text" id="startLocation" placeholder="From" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-8">
+                                <input type="text" id="endLocation" placeholder="To" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-8">
+                                <div id="seatButtons"></div>
+                                @Html.HiddenFor(model => model.SEAT_NUMBER)
+                                @Html.ValidationMessageFor(model => model.SEAT_NUMBER, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.JOURNEY_DATE, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                @Html.ValidationMessageFor(model => model.JOURNEY_DATE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-8">
+                                <input type="submit" value="Book Ticket" class="btn btn-info btn-block" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-7 col-md-7">
+                <img src="~/Image/book.gif" alt="Instruction section image" width="100%" height="auto" class="instruction-image">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ticket-purchase-steps">
+        <div class="step-div">
+            <div class="img-div">
+                <img src="~/Image/sear.png" alt="Step one: Search" width="159" height="183">
+            </div>
+            <div class="heading-div">Search</div>
+            <div class="description-div">Choose your origin, destination, journey dates and search for buses</div>
+        </div>
+        <div class="step-div">
+            <div class="img-div">
+                <img src="~/Image/a.png" alt="Step two: Select" width="167" height="155">
+            </div>
+            <div class="heading-div">Select</div>
+            <div class="description-div">Select your desired trip and choose your seats</div>
+        </div>
+        <div class="step-div">
+            <div class="img-div">
+                <img src="~/Image/pay.png" alt="Step three: Pay" width="172" height="148">
+            </div>
+            <div class="heading-div">Pay</div>
+            <div class="description-div">Pay for the tickets via Debit/Credit Cards or MFS</div>
+        </div>
+    </div>
+
+
+    <app-purchase-instructions _ngcontent-mpk-c55="" _nghost-mpk-c40="">
+        <div _ngcontent-mpk-c40="" class="home">
+            <div _ngcontent-mpk-c40="" class="instruction-section row">
+                <div _ngcontent-mpk-c40="" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <img _ngcontent-mpk-c40="" src="~/Image/inst.png" alt="Instruction section image" width="313" height="402" class="instruction-image"/>
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                    <h3 style="font-weight:bold;color:red;">Instructions to Purchase Tickets</h3>
+                    <ul class="list-unstyled custom-list">
+                        <li>
+                            <span class="fa fa-arrow-right" style="color: blue;"></span>
+
+                            Tickets can be bought online ten days in advance.
+                        </li>
+                        <li>
+                            <span class="fa fa-arrow-right"></span>
+                            You can pay for the tickets using mobile financial services: Bkash, Nagad, Rocket, Upay or debit/credit cards: Mastercard, Visa, DBBL Nexus. Other payment options will be available soon.
+                        </li>
+                        <li>
+                            <span class="fa fa-arrow-right"></span>
+                            In case of payment or transaction failure, the deducted amount would be refunded by your bank or MFS provider within 8 business days.
+                        </li>
+                        <li>
+                            <span class="fa fa-arrow-right"></span>
+                            In case money has been deducted from your card / mobile wallet but you have not received a ticket confirmation, the deducted amount would be refunded by your bank or MFS provider within 8 business days.
+                        </li>
+                        <li>
+                            <span class="fa fa-arrow-right"></span>
+                            If you have not received your ticket copy in email, kindly check your Spam / Junk folder. You can also download your ticket copy from the purchase history of your account after you login.
+                        </li>
+                        <li>
+                            <span class="fa fa-arrow-right"></span>
+                            Download the official <a class="rail-sheba-bold-link" href="https://play.google.com/store/apps/details?id=com.shohoz.dtrainpwa" target="_blank">Book Easy</a> app published by Bangladesh Road Transport Ltd from <a class="rail-sheba-underlined-link" href="https://play.google.com/store/apps/details?id=com.shohoz.dtrainpwa" target="_blank">Google Play.</a>
+                        </li>
+                        <li>
+                            <span class="fa fa-arrow-right"></span>
+                            In case of passengers downloading fake apps or any other app from Google Play which claim to sell Bus tickets of Bangladesh Road Trasnport Ltd, the authorities will not take any liability.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div _ngcontent-mpk-c42="" class="row-4 text-center" style="margin-top:20px;">
+            <p _ngcontent-mpk-c42="" class="note font-weight-bold" style="font-weight:bold;">
+                The tickets are issued by Bangladesh Road Trasnport Ltd Integrated Ticketing System (BRITS) and Shohoz-Synesis-Vincen JV is responsible for designing, development, implementation, technical operation & maintenance of the system.
+            </p>
+        </div>
+
+
+
+        @section scripts {
+            <script>
+        $(document).ready(function () {
+            $('#busDropdown').change(function () {
+                var busId = $(this).val();
+                if (busId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBusCapacity", "Tickets")',
+                        type: 'GET',
+                        data: { busId: busId },
+                        success: function (data) {
+                            var seatButtonsContainer = $('#seatButtons');
+                            seatButtonsContainer.empty();
+                            if (data.capacity) {
+                                for (var i = 1; i <= data.capacity; i++) {
+                                    var seatNumber = 'A' + i;
+                                    var button = $('<button type="button" class="btn seat-button" data-seat="' + seatNumber + '">' + seatNumber + '</button>');
+                                    if (data.takenSeats.includes(seatNumber)) {
+                                        button.addClass('btn-danger');
+                                    } else {
+                                        button.addClass('btn-default');
+                                    }
+                                    seatButtonsContainer.append(button);
+                                }
+                            }
+                            $('.seat-button').click(function () {
+                                if (!$(this).hasClass('btn-danger')) {
+                                    var selectedSeat = $(this).data('seat');
+                                    $('input[name="SEAT_NUMBER"]').val(selectedSeat);
+                                    $('.seat-button').removeClass('btn-primary');
+                                    $(this).addClass('btn-primary');
+                                }
+                            });
+
+                            $('#startLocation').val(data.startLocation);
+                            $('#endLocation').val(data.endLocation);
+                        }
+                    });
+                } else {
+                    $('#seatButtons').empty();
+                    $('#startLocation').val('');
+                    $('#endLocation').val('');
+                }
+            });
+        });
+            </script>
+        }
+
+
+
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="~/Scripts/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

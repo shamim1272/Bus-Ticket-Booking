@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title BookEasy </title>
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.4.0/collection/components/icon/icon.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        .navbar {
+            background-color: white;
+            color: #000;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 20px;
+        }
+
+        .navbar-nav > li {
+            position: relative;
+            list-style: none; /* Remove default list style */
+            margin: 10px 0;
+        }
+
+            .navbar-nav > li::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px; /* Height of the line */
+                background-color: #007bff; /* Color of the line */
+                transition: width 0.3s ease; /* Transition for width */
+            }
+
+            .navbar-nav > li:hover::before {
+                width: 100%; /* Width of the line on hover */
+            }
+
+        .navbar-default .navbar-nav > li > a {
+            color: black !important;
+        }
+
+        .navbar-default .navbar-nav > li.active > a {
+            color: red !important; /* Set active item color to red */
+            background-color: transparent !important;
+        }
+
+        .navbar-default .navbar-nav > li > a:hover,
+        .navbar-default .navbar-nav > li > a:focus {
+            color: red !important; /* Set hover item color to red */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <div class="container">
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                <img src="@Url.Content("~/Image/1.png")" alt="Application Logo" style="height: 40px;" />
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" title="Toggle navigation" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav me-auto">
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                <ul class="nav navbar-nav ms-auto">
+                    <li class="nav-item" style="border-radius: 20px;">
+                        @Html.ActionLink("Register", "Create", "Customers", new { area = "" }, new { @class = "nav-link btn btn-success" })
+                    </li>
+
+                    <li class="nav-item">@Html.ActionLink("Login", "Login", "Customers", new { area = "" }, new { @class = "nav-link" })</li>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
